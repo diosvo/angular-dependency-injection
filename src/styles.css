@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+}
+
+.big-title {
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.title {
+  font-weight: 500;
+  padding: 1rem;
+
+  color: aliceblue;
+  background-color: royalblue;
+  border: 1px solid royalblue;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  overflow-x: scroll ;
+}
+
+table thead {
+  text-align: left;
+  background-color: aliceblue;
+}
+
+table thead:last-child,
+table td:last-child {
+  min-width: 100px;
+  text-align: center;
+}
+
+table thead,
+table td {
+  min-width: 150px;
+  border: 1px solid #ddd;
+  padding: 0.5rem;
+}

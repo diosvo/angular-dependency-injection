@@ -1,0 +1,33 @@
+<div class="title">Resolution Modifiers</div>
+<table>
+  <thead>
+    <td></td>
+    <td>LoggerService (<b>S</b>)</td>
+    <td>AppComponent (<b>C</b>)</td>
+    <td>Detection</td>
+    <td>App build</td>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td rowspan="2">@Optionals</td>
+      <td><code>@Injectable()</code></td>
+      <td><code>private logger: LoggerService</code></td>
+      <td>No injector 'root' in S and inject @Optionals in C</td>
+      <td>❌</td>
+    </tr>
+
+    <tr>
+      <td><code>log: (message: string) => void</code></td>
+      <td>
+        <code>
+          <b>@Optional()</b> private logger: LoggerService
+          <br />
+          if logger => logger.log('constructor init')
+        </code>
+      </td>
+      <td>-</td>
+      <td>🎉</td>
+    </tr>
+  </tbody>
+</table>
