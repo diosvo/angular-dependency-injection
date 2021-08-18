@@ -6,8 +6,8 @@ import { LoggerService } from './logger.service';
   templateUrl: './app.component.html'
 })
 export class AppComponent {
-  // @Optional()
   /**
+   * @constructor: @Optional()
    * @description: without injector 'root', the app will build failed
    */
 
