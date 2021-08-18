@@ -2,31 +2,63 @@
 <table>
   <thead>
     <td></td>
-    <td>LoggerService (<b>S</b>)</td>
-    <td>AppComponent (<b>C</b>)</td>
+    <td>
+      <span style="color: red">LoggerService</span>
+      <span style="display: block">log: (message: string) => void</span>
+    </td>
+    <td>
+      <span style="color: red">AppComponent</span>
+      <span style="display: block">if logger => logger.log('...')</span>
+    </td>
     <td>Detection</td>
     <td>App build</td>
   </thead>
 
   <tbody>
+    <!-- @Optional() -->
     <tr>
       <td rowspan="2">@Optionals</td>
       <td><code>@Injectable()</code></td>
       <td><code>private logger: LoggerService</code></td>
-      <td>No injector 'root' in S and inject @Optionals in C</td>
+      <td>No providedIn 'root' in S and inject @Optionals in C</td>
       <td>❌</td>
     </tr>
 
     <tr>
-      <td><code>log: (message: string) => void</code></td>
+      <td>-</td>
       <td>
-        <code>
-          <b>@Optional()</b> private logger: LoggerService
-          <br />
-          if logger => logger.log('constructor init')
-        </code>
+        <code><b>@Optional()</b> private logger: LoggerService </code>
       </td>
       <td>-</td>
+      <td>🎉</td>
+    </tr>
+
+    <!-- @Self() -->
+    <tr>
+      <td rowspan="2">@Self()</td>
+      <td rowspan="2"><code>@Injectable(providedIn: 'root')</code></td>
+      <td>
+        <code> <b>@Self()</b> private logger: LoggerService </code>
+      </td>
+      <td>
+        NodeInjector: NOT_FOUND
+        <br />
+        Resolve dependency only in its own injector
+      </td>
+      <td>❌</td>
+    </tr>
+
+    <tr>
+      <td>
+        <code> providers: [LoggerService]</code>
+        <br />
+        <code> <b>@Self()</b> private logger: LoggerService </code>
+      </td>
+      <td>
+        Eagerly imported modules share their root module injector.
+        <br />
+        @Self() will point out to exactly root injector.
+      </td>
       <td>🎉</td>
     </tr>
   </tbody>

@@ -1,17 +1,27 @@
-import { Component, Optional, VERSION } from '@angular/core';
+import { Component, Optional, Self, VERSION } from '@angular/core';
 import { LoggerService } from './logger.service';
 
 @Component({
   selector: 'my-app',
-  templateUrl: './app.component.html'
+  templateUrl: './app.component.html',
+  providers: [LoggerService]
 })
 export class AppComponent {
   /**
    * @constructor: @Optional()
-   * @description: without injector 'root', the app will build failed
    */
 
-  constructor(@Optional() private logger: LoggerService) {
+  // constructor(@Optional() private logger: LoggerService) {
+  //   if (this.logger) {
+  //     this.logger.log('constructor inint');
+  //   }
+  // }
+
+  /**
+   * @constructor: @Self()
+   */
+
+  constructor(@Self() private logger: LoggerService) {
     if (this.logger) {
       this.logger.log('constructor inint');
     }
