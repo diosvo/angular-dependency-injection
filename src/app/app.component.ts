@@ -1,4 +1,4 @@
-import { Component, Optional, Self, VERSION } from '@angular/core';
+import { Component, Optional, Self, SkipSelf, VERSION } from '@angular/core';
 import { LoggerService } from './logger.service';
 
 @Component({
@@ -13,7 +13,7 @@ export class AppComponent {
 
   // constructor(@Optional() private logger: LoggerService) {
   //   if (this.logger) {
-  //     this.logger.log('constructor inint');
+  //     this.logger.log('@Optional(): constructor inint');
   //   }
   // }
 
@@ -21,9 +21,25 @@ export class AppComponent {
    * @constructor: @Self()
    */
 
-  constructor(@Self() private logger: LoggerService) {
+  // constructor(@Self() private logger: LoggerService) {
+  //   if (this.logger) {
+  //     this.logger.log('@Self(): constructor inint');
+  //   }
+  // }
+
+  /**
+   * @constructor: @SkipSelf()
+   */
+
+  constructor(
+    @Self() private logger: LoggerService,
+    @SkipSelf() private parentLogger: LoggerService
+  ) {
     if (this.logger) {
-      this.logger.log('constructor inint');
+      this.logger.log('@Self(): constructor inint');
+    }
+    if (this.parentLogger) {
+      this.logger.log('@SkipSelf(): constructor inint');
     }
   }
 }

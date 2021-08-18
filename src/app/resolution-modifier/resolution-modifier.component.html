@@ -36,7 +36,7 @@
     <!-- @Self() -->
     <tr>
       <td rowspan="2">@Self()</td>
-      <td rowspan="2"><code>@Injectable(providedIn: 'root')</code></td>
+      <td rowspan="3"><code>@Injectable(providedIn: 'root')</code></td>
       <td>
         <code><b>@Self()</b> private logger: LoggerService </code>
       </td>
@@ -50,7 +50,7 @@
 
     <tr>
       <td>
-        <code> providers: [LoggerService]</code>
+        <code><b>providers: [LoggerService]</b></code>
         <br />
         <code><b>@Self()</b> private logger: LoggerService </code>
       </td>
@@ -58,6 +58,25 @@
         Eagerly imported modules share their root module injector.
         <br />
         @Self() will point out to exactly root injector.
+      </td>
+      <td>🎉</td>
+    </tr>
+
+    <!-- @SkipSelf() -->
+    <tr>
+      <td>@SkipSelf()</td>
+      <td>
+        <code>
+          <b>@Self()</b> private logger: LoggerService,
+          <br />
+          <b>@SkipSelf()</b> private parentLogger: LoggerService
+        </code>
+      </td>
+      <td>
+        Opposite from @Self()
+        <br />
+        Just keep injector where it was declared and result dependencies
+        starting from its parent and above.
       </td>
       <td>🎉</td>
     </tr>
