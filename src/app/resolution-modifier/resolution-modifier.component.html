@@ -17,44 +17,56 @@
   <tbody>
     <!-- @Optional() -->
     <tr>
-      <td rowspan="2">@Optionals</td>
+      <td rowspan="2">@Optional()</td>
       <td><code>@Injectable()</code></td>
-      <td><code>private logger: LoggerService</code></td>
-      <td>No providedIn 'root' in S and inject @Optionals in C</td>
+      <td>
+        <div class="bg-code">
+          <code>private logger: LoggerService</code>
+        </div>
+      </td>
+      <td id="detection">
+        No providedIn 'root' in S and inject @Optionals in C
+      </td>
       <td>❌</td>
     </tr>
 
     <tr>
       <td>-</td>
       <td>
-        <code><b>@Optional()</b> private logger: LoggerService </code>
+        <div class="bg-code">
+          <code><b>@Optional()</b> private logger: LoggerService </code>
+        </div>
       </td>
-      <td>-</td>
+      <td>Prevents application from crashing if dependencies was not found</td>
       <td>🎉</td>
     </tr>
 
     <!-- @Self() -->
     <tr>
       <td rowspan="2">@Self()</td>
-      <td rowspan="3"><code>@Injectable(providedIn: 'root')</code></td>
+      <td rowspan="5"><code>@Injectable(providedIn: 'root')</code></td>
       <td>
-        <code><b>@Self()</b> private logger: LoggerService </code>
+        <div class="bg-code">
+          <code><b>@Self()</b> private logger: LoggerService </code>
+        </div>
       </td>
-      <td>
-        NodeInjector: NOT_FOUND
-        <br />
-        Resolve dependency only in its own injector
+      <td id="detection">
+        No provider for LoggerService
       </td>
       <td>❌</td>
     </tr>
 
     <tr>
       <td>
-        <code><b>providers: [LoggerService]</b></code>
+        <div class="bg-code">
+          <code><b>providers: [LoggerService]</b></code>
+        </div>
         <br />
-        <code><b>@Self()</b> private logger: LoggerService </code>
+        <div class="bg-code">
+          <code><b>@Self()</b> private logger: LoggerService </code>
+        </div>
       </td>
-      <td>
+      <td id="detection">
         Eagerly imported modules share their root module injector.
         <br />
         @Self() will point out to exactly root injector.
@@ -66,14 +78,75 @@
     <tr>
       <td>@SkipSelf()</td>
       <td>
-        <code>
-          <b>@Self()</b> private logger: LoggerService,
-          <br />
-          <b>@SkipSelf()</b> private parentLogger: LoggerService
-        </code>
+        <div class="bg-code">
+          <code>
+            <b>@Self()</b> private logger: LoggerService,
+            <br />
+            <b>@SkipSelf()</b> private parentLogger: LoggerService
+          </code>
+        </div>
       </td>
-      <td>
+      <td id="detection">
         Opposite from @Self()
+        <br />
+        Just keep injector where it was declared and result dependencies
+        starting from its parent and above.
+      </td>
+      <td>🎉</td>
+    </tr>
+
+    <!-- @Host() -->
+    <tr>
+      <td rowspan="2">@Host()</td>
+      <td>
+        <div>
+          app.component.html:
+          <br />
+          <div class="bg-code">
+            <code>
+              div <b>appParent</b>
+              <br />
+              &nbsp; div <b>appChild</b>
+            </code>
+          </div>
+        </div>
+        <div>
+          child.directive.ts:
+          <br />
+          <div class="bg-code">
+            <code> <b>@Host()</b> private parentLogger: LoggerService </code>
+          </div>
+        </div>
+        <div>
+          parent.directive.ts:
+          <br />
+          <div class="bg-code">
+            <code>
+              <b>@Optional() @Self()</b> private logger: LoggerService</code
+            >
+          </div>
+        </div>
+      </td>
+      <td id="detection">
+        No provider for LoggerService
+      </td>
+      <td>❌</td>
+    </tr>
+
+    <tr>
+      <td>
+        <div>
+          add providers in parent.directive.ts:
+          <br />
+          <div class="bg-code">
+            <code> <b>providers</b> [LoggerService] </code>
+          </div>
+          <br />
+        </div>
+      </td>
+      <td id="detection">
+        Tell Angular the host element should be <b>the last stop</b> when it is
+        searching for providers
         <br />
         Just keep injector where it was declared and result dependencies
         starting from its parent and above.

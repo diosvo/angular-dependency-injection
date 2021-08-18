@@ -13,7 +13,7 @@ export class AppComponent {
 
   // constructor(@Optional() private logger: LoggerService) {
   //   if (this.logger) {
-  //     this.logger.log('@Optional(): constructor inint');
+  //     this.logger.log('@Optional(): constructor init');
   //   }
   // }
 
@@ -23,7 +23,7 @@ export class AppComponent {
 
   // constructor(@Self() private logger: LoggerService) {
   //   if (this.logger) {
-  //     this.logger.log('@Self(): constructor inint');
+  //     this.logger.log('@Self(): constructor init');
   //   }
   // }
 
@@ -31,15 +31,15 @@ export class AppComponent {
    * @constructor: @SkipSelf()
    */
 
-  constructor(
-    @Self() private logger: LoggerService,
-    @SkipSelf() private parentLogger: LoggerService
-  ) {
-    if (this.logger) {
-      this.logger.log('@Self(): constructor inint');
-    }
-    if (this.parentLogger) {
-      this.logger.log('@SkipSelf(): constructor inint');
-    }
-  }
+  // constructor(
+  //   @Self() private logger: LoggerService,
+  //   @SkipSelf() private parentLogger: LoggerService
+  // ) {
+  //   if (this.logger) {
+  //     this.logger.log('@Self(): constructor init');
+  //   }
+  //   if (this.parentLogger) {
+  //     this.logger.log('@SkipSelf(): constructor init');
+  //   }
+  // }
 }
