@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { HttpClient, HttpClientJsonpModule } from '@angular/common/http';
+import { Inject, Injectable } from '@angular/core';
 import { Logger } from './logger';
 
 @Injectable({
@@ -6,6 +7,8 @@ import { Logger } from './logger';
 })
 export class ExperimentalLoggerService implements Logger {
   prefix = 'root';
+
+  constructor(private http: HttpClient) {}
 
   log(message: string): void {
     console.log(`${this.prefix} (experimental) - ${message}`);

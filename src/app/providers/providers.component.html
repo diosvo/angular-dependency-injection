@@ -106,5 +106,45 @@
       </td>
       <td>AppComponent (legacy): init</td>
     </tr>
+
+    <!-- InjectionToken -->
+    <tr>
+      <td rowspan="2">InjectionToken</td>
+      <td>
+        create
+        <span style="color: red;">AppConfig</span>
+      </td>
+      <td>
+        in <span style="color: red;">ExperimentalLoggerService</span>
+        <div class="bg-code">
+          <code>
+          constructor(<b class="main-text">@Inject(APP_CONFIG)</b> private config: AppConfig)
+          <br/>
+            console.log('ExperimentalLoggerService -> constructor -> config', config);
+          </code>
+        </div>
+      </td>
+      <td>-</td>
+      <td>ExperimentalLoggerService -> constructor -> config -> object: experimentalEnabled: true</td>
+    </tr>
+
+    <tr>
+      <td>-</td>
+      <td>
+        in <b class="main-text"><code>providers</code></b>
+        <div class="bg-code">
+          <code>
+          provide: LoggerService,
+          <br/>
+          useFactory: (config: AppConfig) => 
+            return config.experimentalEnabled ? new ExperimentalLoggerService() : new LoggerService(),
+          <br/>
+          deps: [APP_CONFIG]
+        </code>
+        </div>
+      </td>
+      <td>-</td>
+      <td>AppComponent (experimental) - init</td>
+    </tr>
   </tbody>
 </table>

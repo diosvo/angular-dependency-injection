@@ -7,6 +7,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ProvidersComponent } from './providers/providers.component';
 import { ResolutionModifiersComponent } from './resolution-modifiers/resolution-modifiers.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
+import { HttpClientModule } from '@angular/common/http';
 
 const routes: Routes = [
   {
@@ -25,7 +26,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [BrowserModule, RouterModule.forRoot(routes)],
+  imports: [BrowserModule, RouterModule.forRoot(routes), HttpClientModule],
   declarations: [
     AppComponent,
     ToolbarComponent,

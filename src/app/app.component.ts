@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, Optional, Self, SkipSelf } from '@angular/core';
+import { AppConfig, APP_CONFIG } from './config.token';
 import { ExperimentalLoggerService } from './experimental-logger.service';
 import { LoggerLegacy } from './logger-legacy';
 import { LoggerService } from './logger.service';
@@ -9,7 +11,12 @@ import { LoggerService } from './logger.service';
   providers: [
     {
       provide: LoggerService,
-      useValue: LoggerLegacy
+      useFactory: (config: AppConfig, http: HttpClient) => {
+        return config.experimentalEnabled
+          ? new ExperimentalLoggerService(http)
+          : new LoggerService();
+      },
+      deps: [APP_CONFIG, HttpClient]
     }
   ]
 })
@@ -68,6 +75,7 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    console.log('what is logger:', this.logger);
     this.logger.prefix = 'AppComponent';
     this.logger.log('init');
 
