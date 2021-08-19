@@ -55,6 +55,7 @@
     <tr>
       <td>useExisting</td>
       <td>
+        in
         <span style="color: red;">ExperimentalLoggerService</span>
         <br>
         <code>@Injectable(providedIn: 'root')</code>
@@ -96,13 +97,14 @@
           </code>
         </div>
       </td>
-      <td id="detection" colspan="2" class="align-left">
+      <td id="detection">
         <span style="color:red">ERROR</span> when use with
         <br/>
         <span>useExisting: it's not injected and Angular will be trying to find dependency for [Object Object]</span>
         <br/>
         <span>useClass: it uses operator new in order to create an object, and we can not call the operator new against the object literal</span>
       </td>
+      <td>AppComponent (legacy): init</td>
     </tr>
   </tbody>
 </table>
