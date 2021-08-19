@@ -9,12 +9,12 @@ import { ResolutionModifiersComponent } from './resolution-modifiers/resolution-
 
 const routes: Routes = [
   {
-    path: 'providers',
-    component: ProvidersComponent
-  },
-  {
     path: 'resolution-modifiers',
     component: ResolutionModifiersComponent
+  },
+  {
+    path: 'providers',
+    component: ProvidersComponent
   }
 ];
 
