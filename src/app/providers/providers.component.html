@@ -10,8 +10,9 @@
     <td>
       <span style="color: red">LoggerService</span>
       <br>
-      <div class="bg-code">
-        implements<code class="ml-1">Logger</code>
+      implements
+      <div class="bg-code ml-1">
+        <code>Logger</code>
       </div>
     </td>
     <td>
@@ -48,6 +49,34 @@
         return new ExperimentalLoggerService(deps...)
       </td>
       <td>AppComponent (experimental) - init</td>
+    </tr>
+
+    <!-- useExisting -->
+    <tr>
+      <td>useExisting</td>
+      <td>
+        <span style="color: red;">ExperimentalLoggerService</span>
+        <br>
+        <code>@Injectable(providedIn: 'root')</code>
+      </td>
+      <td>
+        <div class="bg-code">
+          <code>
+          providers: [
+            provide: LoggerService,
+            <b>useExisting</b>: ExperimentalLoggerService
+          ]
+          </code>
+        </div>
+        <div class="bg-code">
+          <code>
+          private experimentalLogger: ExperimentalLoggerService
+          </code>
+        </div>
+      </td>
+      <td colspan="2">
+        w/o useExisting, logger & experimentalLogger is not the same instance
+      </td>
     </tr>
   </tbody>
 </table>

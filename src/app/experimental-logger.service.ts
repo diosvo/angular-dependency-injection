@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Logger } from './logger';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class ExperimentalLoggerService implements Logger {
   prefix = 'root';
 

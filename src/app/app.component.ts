@@ -8,7 +8,7 @@ import { LoggerService } from './logger.service';
   providers: [
     {
       provide: LoggerService,
-      useClass: ExperimentalLoggerService
+      useExisting: ExperimentalLoggerService
     }
   ]
 })
@@ -53,11 +53,27 @@ export class AppComponent implements OnInit {
   /**
    * @description: [PROVIDERS]
    */
+  /**
+   *  @alias: useClass
+   */
+  // constructor(private logger: LoggerService) {}
 
-  constructor(private logger: LoggerService) {}
+  /**
+   *  @alias: useExisting
+   */
+  constructor(
+    private logger: LoggerService,
+    private experimentalLogger: ExperimentalLoggerService
+  ) {}
 
   ngOnInit(): void {
     this.logger.prefix = 'AppComponent';
     this.logger.log('init');
+
+    // w/o useExisting, the comparision is false
+    console.log(
+      'is instance the same:',
+      this.logger === this.experimentalLogger
+    );
   }
 }

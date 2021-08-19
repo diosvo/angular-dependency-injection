@@ -60,6 +60,10 @@ table td {
   line-height: 2;
 }
 
+.mt-1 {
+  margin-top: 0.5rem;
+}
+
 .ml-1 {
   margin-left: 0.5rem;
 }
