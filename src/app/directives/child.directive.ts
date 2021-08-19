@@ -6,6 +6,7 @@ import { LoggerService } from '../logger.service';
 })
 export class ChildDirective {
   constructor(@Host() private logger: LoggerService) {
-    this.logger.log('Child Directive: directive constructor');
+    this.logger.prefix = 'Child Directive';
+    this.logger.log('directive constructor');
   }
 }

@@ -12,7 +12,8 @@ export class AppComponent {
    */
   // constructor(@Optional() private logger: LoggerService) {
   //   if (this.logger) {
-  //     this.logger.log('@Optional(): constructor init');
+  //     this.logger.prefix = '@Optional()';
+  //     this.logger.log('constructor init');
   //   }
   // }
   /**
@@ -20,7 +21,8 @@ export class AppComponent {
    */
   // constructor(@Self() private logger: LoggerService) {
   //   if (this.logger) {
-  //     this.logger.log('@Self(): constructor init');
+  //     this.logger.prefix = '@Self()';
+  //     this.logger.log('constructor init');
   //   }
   // }
   /**
@@ -31,10 +33,12 @@ export class AppComponent {
   //   @SkipSelf() private parentLogger: LoggerService
   // ) {
   //   if (this.logger) {
-  //     this.logger.log('@Self(): constructor init');
+  //     this.logger.prefix = '@Self()';
+  //     this.logger.log('constructor init');
   //   }
   //   if (this.parentLogger) {
-  //     this.logger.log('@SkipSelf(): constructor init');
+  //     this.logger.prefix = '@SkipSelf()';
+  //     this.logger.log('constructor init');
   //   }
   // }
 }

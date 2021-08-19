@@ -1,1 +1,35 @@
-hiiii
+<div class="title">Providers</div>
+<table>
+  <thead>
+    <td></td>
+    <td>
+      <span style="color: red">LoggerService</span>
+    </td>
+    <td>
+      <span style="color: red">AppComponent</span>
+      <br/>
+      <div class="bg-code">
+        <code>private logger: LoggerService</code>
+      </div>
+    </td>
+    <td>Detection</td>
+    <td>App build</td>
+  </thead>
+
+  <tbody>
+    <!-- @Optional() -->
+    <tr>
+      <td>@Optional()</td>
+      <td><code>@Injectable()</code></td>
+      <td>
+        <div class="bg-code">
+          <code>private logger: LoggerService</code>
+        </div>
+      </td>
+      <td id="detection">
+        No providedIn 'root' in S and inject @Optionals in C
+      </td>
+      <td>❌</td>
+    </tr>
+  </tbody>
+</table>
