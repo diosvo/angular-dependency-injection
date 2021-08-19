@@ -6,8 +6,14 @@ import { ChildDirective } from './directives/child.directive';
 import { RouterModule, Routes } from '@angular/router';
 import { ProvidersComponent } from './providers/providers.component';
 import { ResolutionModifiersComponent } from './resolution-modifiers/resolution-modifiers.component';
+import { ToolbarComponent } from './toolbar/toolbar.component';
 
 const routes: Routes = [
+  {
+    path: '',
+    redirectTo: 'resolution-modifiers',
+    pathMatch: 'full'
+  },
   {
     path: 'resolution-modifiers',
     component: ResolutionModifiersComponent
@@ -22,7 +28,10 @@ const routes: Routes = [
   imports: [BrowserModule, RouterModule.forRoot(routes)],
   declarations: [
     AppComponent,
+    ToolbarComponent,
+
     ProvidersComponent,
+
     ResolutionModifiersComponent,
     ParentDirective,
     ChildDirective
