@@ -40,7 +40,7 @@
           <code>
           providers: [
             provide: LoggerService,
-            <b>useClass</b>: ExperimentalLoggerService
+            <b class="main-text">useClass</b>: ExperimentalLoggerService
           ]
           </code>
         </div>
@@ -64,7 +64,7 @@
           <code>
           providers: [
             provide: LoggerService,
-            <b>useExisting</b>: ExperimentalLoggerService
+            <b class="main-text">useExisting</b>: ExperimentalLoggerService
           ]
           </code>
         </div>
@@ -75,7 +75,33 @@
         </div>
       </td>
       <td colspan="2">
-        w/o useExisting, logger & experimentalLogger is not the same instance
+        w/o useExisting, logger & experimentalLogger is NOT the same instance
+      </td>
+    </tr>
+
+    <!-- useValue -->
+    <tr>
+      <td>useValue</td>
+      <td>
+        create
+        <span style="color: red;">LoggerLegacy</span>
+      </td>
+      <td>
+        <div class="bg-code">
+          <code>
+          providers: [
+            provide: LoggerService,
+            <b class="main-text">useValue</b>: LoggerLegacy
+          ]
+          </code>
+        </div>
+      </td>
+      <td id="detection" colspan="2" class="align-left">
+        <span style="color:red">ERROR</span> when use with
+        <br/>
+        <span>useExisting: it's not injected and Angular will be trying to find dependency for [Object Object]</span>
+        <br/>
+        <span>useClass: it uses operator new in order to create an object, and we can not call the operator new against the object literal</span>
       </td>
     </tr>
   </tbody>

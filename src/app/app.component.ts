@@ -1,5 +1,6 @@
 import { Component, OnInit, Optional, Self, SkipSelf } from '@angular/core';
 import { ExperimentalLoggerService } from './experimental-logger.service';
+import { LoggerLegacy } from './logger-legacy';
 import { LoggerService } from './logger.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { LoggerService } from './logger.service';
   providers: [
     {
       provide: LoggerService,
-      useExisting: ExperimentalLoggerService
+      useValue: LoggerLegacy
     }
   ]
 })
@@ -71,9 +72,9 @@ export class AppComponent implements OnInit {
     this.logger.log('init');
 
     // w/o useExisting, the comparision is false
-    console.log(
-      'is instance the same:',
-      this.logger === this.experimentalLogger
-    );
+    // console.log(
+    //   'is instance the same:',
+    //   this.logger === this.experimentalLogger
+    // );
   }
 }

@@ -41,7 +41,7 @@
       <td>-</td>
       <td>
         <div class="bg-code">
-          <code><b>@Optional()</b> private logger: LoggerService </code>
+          <code><b class="main-text">@Optional()</b> private logger: LoggerService </code>
         </div>
       </td>
       <td>Prevents application from crashing if dependencies was not found</td>
@@ -54,7 +54,7 @@
       <td rowspan="5"><code>@Injectable(providedIn: 'root')</code></td>
       <td>
         <div class="bg-code">
-          <code><b>@Self()</b> private logger: LoggerService </code>
+          <code><b class="main-text">@Self()</b> private logger: LoggerService </code>
         </div>
       </td>
       <td id="detection">
@@ -65,12 +65,9 @@
 
     <tr>
       <td>
+        as above and add
         <div class="bg-code">
-          <code><b>providers: [LoggerService]</b></code>
-        </div>
-        <br />
-        <div class="bg-code">
-          <code><b>@Self()</b> private logger: LoggerService </code>
+          <code><b>providers:</b> [LoggerService]</code>
         </div>
       </td>
       <td id="detection">
@@ -89,7 +86,7 @@
           <code>
             <b>@Self()</b> private logger: LoggerService,
             <br />
-            <b>@SkipSelf()</b> private parentLogger: LoggerService
+            <b class="main-text">@SkipSelf()</b> private parentLogger: LoggerService
           </code>
         </div>
       </td>
@@ -121,7 +118,7 @@
           child.directive.ts (it will work normally without parent directive):
           <br />
           <div class="bg-code">
-            <code> <b>@Host()</b> private parentLogger: LoggerService </code>
+            <code><b class="main-text">@Host()</b> private parentLogger: LoggerService </code>
           </div>
         </div>
         <div>
@@ -145,7 +142,7 @@
           as above, and add providers in parent.directive.ts:
           <br />
           <div class="bg-code">
-            <code> <b>providers</b> [LoggerService] </code>
+            <code> <b>providers:</b> [LoggerService] </code>
           </div>
           <br />
         </div>

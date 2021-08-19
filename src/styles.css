@@ -75,3 +75,11 @@ table td {
 .mx-1 {
   margin: 0 0.5rem;
 }
+
+.align-left {
+  text-align: left !important;
+}
+
+.main-text {
+  color: crimson;
+}
