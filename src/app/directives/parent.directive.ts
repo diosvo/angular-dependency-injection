@@ -8,8 +8,8 @@ import { LoggerService } from '../logger.service';
 export class ParentDirective {
   constructor(@Optional() @Self() private logger: LoggerService) {
     if (this.logger) {
-      this.logger.prefix = 'Parent Directive'
-      this.logger.log('Pdirective constructor');
+      this.logger.prefix = 'Parent Directive';
+      this.logger.log('directive constructor');
     }
   }
 }

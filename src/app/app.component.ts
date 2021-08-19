@@ -1,12 +1,21 @@
-import { Component, Optional, Self, SkipSelf, VERSION } from '@angular/core';
+import { Component, OnInit, Optional, Self, SkipSelf } from '@angular/core';
+import { ExperimentalLoggerService } from './experimental-logger.service';
 import { LoggerService } from './logger.service';
 
 @Component({
   selector: 'my-app',
   templateUrl: './app.component.html',
-  providers: [LoggerService]
+  providers: [
+    {
+      provide: LoggerService,
+      useClass: ExperimentalLoggerService
+    }
+  ]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  /**
+   * @description: [RESOLUTION MODIFIERS]
+   */
   /**
    * @constructor: @Optional()
    */
@@ -41,4 +50,14 @@ export class AppComponent {
   //     this.logger.log('constructor init');
   //   }
   // }
+  /**
+   * @description: [PROVIDERS]
+   */
+
+  constructor(private logger: LoggerService) {}
+
+  ngOnInit(): void {
+    this.logger.prefix = 'AppComponent';
+    this.logger.log('init');
+  }
 }

@@ -1,9 +1,18 @@
-<div class="title">Providers</div>
+<div class="title">
+  <span>Providers</span>
+  <span class="ml-1">(Create: <code style="margin-left: 0.25rem"><b>ExperimentalLoggerService</b></code>)
+</span>
+</div>
+
 <table>
   <thead>
     <td></td>
     <td>
       <span style="color: red">LoggerService</span>
+      <br>
+      <div class="bg-code">
+        implements<code class="ml-1">Logger</code>
+      </div>
     </td>
     <td>
       <span style="color: red">AppComponent</span>
@@ -11,25 +20,34 @@
       <div class="bg-code">
         <code>private logger: LoggerService</code>
       </div>
+      and implements
+      <div class="bg-code">
+        <code>OnInit</code>
+      </div>
     </td>
     <td>Detection</td>
-    <td>App build</td>
+    <td>Result (log)</td>
   </thead>
 
   <tbody>
-    <!-- @Optional() -->
+    <!-- useClass -->
     <tr>
-      <td>@Optional()</td>
-      <td><code>@Injectable()</code></td>
+      <td>useClass</td>
+      <td>-</td>
       <td>
         <div class="bg-code">
-          <code>private logger: LoggerService</code>
+          <code>
+          providers: [
+            provide: LoggerService,
+            <b>useClass</b>: ExperimentalLoggerService
+          ]
+          </code>
         </div>
       </td>
-      <td id="detection">
-        No providedIn 'root' in S and inject @Optionals in C
+      <td>
+        return new ExperimentalLoggerService(deps...)
       </td>
-      <td>❌</td>
+      <td>AppComponent (experimental) - init</td>
     </tr>
   </tbody>
 </table>
