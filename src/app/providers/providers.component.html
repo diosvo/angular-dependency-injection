@@ -107,9 +107,9 @@
       <td>AppComponent (legacy): init</td>
     </tr>
 
-    <!-- InjectionToken -->
+    <!-- InjectionToken & useFactory -->
     <tr>
-      <td rowspan="2">InjectionToken</td>
+      <td rowspan="2">InjectionToken (useFactory)</td>
       <td>
         create
         <span style="color: red;">AppConfig</span>
@@ -124,26 +124,36 @@
           </code>
         </div>
       </td>
-      <td>-</td>
+      <td rowspan="2">-</td>
       <td>ExperimentalLoggerService -> constructor -> config -> object: experimentalEnabled: true</td>
     </tr>
 
     <tr>
       <td>-</td>
       <td>
+        create
+        <span style="color: red;">loggerFactory</span>
+        <br/>
+        <div class="bg-code">
+          <code>(injector: Injector)
+        <br/>
+        return injector.get(APP_CONFIG).experimentalEnabled
+          ? injector.get(ExperimentalLoggerService)
+          : injector.get(LoggerService);
+        </code>
+        </div>
         in <b class="main-text"><code>providers</code></b>
+        <br/>
         <div class="bg-code">
           <code>
           provide: LoggerService,
           <br/>
-          useFactory: (config: AppConfig) => 
-            return config.experimentalEnabled ? new ExperimentalLoggerService() : new LoggerService(),
+          <b class="main-text">useFactory</b>: loggerFactory
           <br/>
-          deps: [APP_CONFIG]
+          <b class="main-text"> deps </b> [injector]
         </code>
         </div>
       </td>
-      <td>-</td>
       <td>AppComponent (experimental) - init</td>
     </tr>
   </tbody>

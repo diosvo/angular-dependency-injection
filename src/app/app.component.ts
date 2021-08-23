@@ -1,9 +1,24 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, Optional, Self, SkipSelf } from '@angular/core';
+import {
+  Component,
+  Injector,
+  OnInit,
+  Optional,
+  Self,
+  SkipSelf
+} from '@angular/core';
 import { AppConfig, APP_CONFIG } from './config.token';
 import { ExperimentalLoggerService } from './experimental-logger.service';
 import { LoggerLegacy } from './logger-legacy';
 import { LoggerService } from './logger.service';
+
+function loggerFactory(
+  injector: Injector
+): ExperimentalLoggerService | LoggerService {
+  return injector.get(APP_CONFIG).experimentalEnabled
+    ? injector.get(ExperimentalLoggerService)
+    : injector.get(LoggerService);
+}
 
 @Component({
   selector: 'my-app',
@@ -11,12 +26,8 @@ import { LoggerService } from './logger.service';
   providers: [
     {
       provide: LoggerService,
-      useFactory: (config: AppConfig, http: HttpClient) => {
-        return config.experimentalEnabled
-          ? new ExperimentalLoggerService(http)
-          : new LoggerService();
-      },
-      deps: [APP_CONFIG, HttpClient]
+      useFactory: loggerFactory,
+      deps: [Injector] // the factory function takes params in exaclty same order as list
     }
   ]
 })
