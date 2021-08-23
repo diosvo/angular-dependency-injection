@@ -8,6 +8,9 @@ import { ProvidersComponent } from './providers/providers.component';
 import { ResolutionModifiersComponent } from './resolution-modifiers/resolution-modifiers.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { HttpClientModule } from '@angular/common/http';
+import { REPORTERS } from './reporter/reporter.token';
+import { BrowserReporterService } from './reporter/browser-reporter.service';
+import { EngagingReporterService } from './reporter/engaging-reporter.service';
 
 const routes: Routes = [
   {
@@ -36,6 +39,12 @@ const routes: Routes = [
     ResolutionModifiersComponent,
     ParentDirective,
     ChildDirective
+  ],
+  providers: [
+    BrowserReporterService,
+    EngagingReporterService,
+    { provide: REPORTERS, useExisting: BrowserReporterService, multi: true },
+    { provide: REPORTERS, useExisting: EngagingReporterService, multi: true }
   ],
   bootstrap: [AppComponent]
 })

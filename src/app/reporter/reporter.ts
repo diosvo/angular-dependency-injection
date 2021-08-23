@@ -1,3 +1,3 @@
 export interface Reporter {
-  reporter: () => void;
+  report: () => void;
 }

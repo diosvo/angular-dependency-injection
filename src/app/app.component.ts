@@ -8,9 +8,12 @@ import {
   SkipSelf
 } from '@angular/core';
 import { AppConfig, APP_CONFIG } from './config.token';
-import { ExperimentalLoggerService } from './experimental-logger.service';
+import { ExperimentalLoggerService } from './logger/experimental-logger.service';
 import { LoggerLegacy } from './logger/logger-legacy';
 import { LoggerService } from './logger/logger.service';
+import { BrowserReporterService } from './reporter/browser-reporter.service';
+import { EngagingReporterService } from './reporter/engaging-reporter.service';
+import { REPORTERS } from './reporter/reporter.token';
 
 function loggerFactory(
   injector: Injector
@@ -24,17 +27,16 @@ function loggerFactory(
   selector: 'my-app',
   templateUrl: './app.component.html',
   providers: [
-    {
+    /*     {
       provide: LoggerService,
       useFactory: loggerFactory,
       deps: [Injector], // the factory function takes params in exaclty same order as list
-      multi: true
-    },
+    }, */
     {
       provide: LoggerService,
-      useValue: LoggerLegacy,
-      multi: true
-    }
+      useClass: ExperimentalLoggerService
+    },
+    // { provide: REPORTERS, useExisting: EngagingReporterService, multi: true }
   ]
 })
 export class AppComponent implements OnInit {
@@ -93,8 +95,8 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     console.log('what is logger:', this.logger);
-    // this.logger.prefix = 'AppComponent';
-    // this.logger.log('init');
+    this.logger.prefix = 'AppComponent';
+    this.logger.log('init');
 
     // w/o useExisting, the comparision is false
     // console.log(
