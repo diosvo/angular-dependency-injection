@@ -1,4 +1,4 @@
-import { Logger } from './logger';
+import { Logger } from "./logger";
 
 export const LoggerLegacy: Logger = {
   prefix: 'legacy root',

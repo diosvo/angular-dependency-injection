@@ -1,4 +1,4 @@
-import { Component, Optional, VERSION } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'resolution-modifiers',

@@ -9,8 +9,8 @@ import {
 } from '@angular/core';
 import { AppConfig, APP_CONFIG } from './config.token';
 import { ExperimentalLoggerService } from './experimental-logger.service';
-import { LoggerLegacy } from './logger-legacy';
-import { LoggerService } from './logger.service';
+import { LoggerLegacy } from './logger/logger-legacy';
+import { LoggerService } from './logger/logger.service';
 
 function loggerFactory(
   injector: Injector
@@ -27,7 +27,13 @@ function loggerFactory(
     {
       provide: LoggerService,
       useFactory: loggerFactory,
-      deps: [Injector] // the factory function takes params in exaclty same order as list
+      deps: [Injector], // the factory function takes params in exaclty same order as list
+      multi: true
+    },
+    {
+      provide: LoggerService,
+      useValue: LoggerLegacy,
+      multi: true
     }
   ]
 })
@@ -87,8 +93,8 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     console.log('what is logger:', this.logger);
-    this.logger.prefix = 'AppComponent';
-    this.logger.log('init');
+    // this.logger.prefix = 'AppComponent';
+    // this.logger.log('init');
 
     // w/o useExisting, the comparision is false
     // console.log(
