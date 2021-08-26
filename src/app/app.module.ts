@@ -41,7 +41,7 @@ const routes: Routes = [
     ToolbarComponent,
 
     ProvidersComponent,
-    
+
     GalleryComponent,
     GallerySlideComponent,
 

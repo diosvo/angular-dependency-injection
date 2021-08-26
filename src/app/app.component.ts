@@ -27,15 +27,15 @@ function loggerFactory(
   selector: 'my-app',
   templateUrl: './app.component.html',
   providers: [
-    /*     {
+    /* {
       provide: LoggerService,
       useFactory: loggerFactory,
-      deps: [Injector], // the factory function takes params in exaclty same order as list
-    }, */
-    {
+      deps: [Injector] // the factory function takes params in exaclty same order as list
+    } */
+    /*  {
       provide: LoggerService,
       useClass: ExperimentalLoggerService
-    },
+    }, */
     // { provide: REPORTERS, useExisting: EngagingReporterService, multi: true }
   ]
 })
@@ -94,10 +94,9 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log('what is logger:', this.logger);
-    this.logger.prefix = 'AppComponent';
-    this.logger.log('init');
-
+    // console.log('what is logger:', this.logger);
+    // this.logger.prefix = 'AppComponent';
+    // this.logger.log('init');
     // w/o useExisting, the comparision is false
     // console.log(
     //   'is instance the same:',
