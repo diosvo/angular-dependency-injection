@@ -11,8 +11,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { REPORTERS } from './reporter/reporter.token';
 import { BrowserReporterService } from './reporter/browser-reporter.service';
 import { EngagingReporterService } from './reporter/engaging-reporter.service';
-import { GalleryComponent } from './view-providers/gallery/gallery.component';
-import { GallerySlideComponent } from './view-providers/gallery-slide/gallery-slide.component';
 
 const routes: Routes = [
   {
