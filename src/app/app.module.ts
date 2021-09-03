@@ -27,10 +27,6 @@ const routes: Routes = [
   {
     path: 'providers',
     component: ProvidersComponent
-  },
-  {
-    path: 'gallery',
-    component: GalleryComponent
   }
 ];
 
@@ -41,9 +37,6 @@ const routes: Routes = [
     ToolbarComponent,
 
     ProvidersComponent,
-
-    GalleryComponent,
-    GallerySlideComponent,
 
     ResolutionModifiersComponent,
     ParentDirective,
